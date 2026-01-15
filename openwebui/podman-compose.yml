@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3000:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/backend/data:Z
+      - ./assets:/app/frontend/static:Z
+      - ./assets/logo.png:/app/build/static/logo.png:Z
+      - ./assets/favicon.png:/app/build/static/favicon.png:Z
+      - ./assets/favicon.png:/app/build/favicon.png:Z
+      - ./assets/logo.png:/app/backend/open_webui/static/logo.png:Z
+      - ./assets/favicon.png:/app/backend/open_webui/static/favicon.png:Z
+    restart: unless-stopped
